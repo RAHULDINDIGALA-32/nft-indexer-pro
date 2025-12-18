@@ -27,7 +27,11 @@ const config = getDefaultConfig({
   ssr: true,
   transports: {
     [mainnet.id] : http(import.meta.env.VITE_MAINNET_RPC_URL),
-    [sepolia.id] : http(import.meta.env.VITE_SEPOLIA_RPC_URL)
+    [sepolia.id] : http(import.meta.env.VITE_SEPOLIA_RPC_URL),
+    [polygon.id] : http(import.meta.env.VITE_POLYGON_RPC_URL),
+    [optimism.id] : http(import.meta.env.VITE_OPTIMISM_RPC_URL),
+    [arbitrum.id] : http(import.meta.env.VITE_ARBITRUM_RPC_URL),
+    [base.id] : http(import.meta.env.VITE_BASE_RPC_URL),
   }
 });
 

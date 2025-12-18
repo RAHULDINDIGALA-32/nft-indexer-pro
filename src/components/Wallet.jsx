@@ -18,6 +18,7 @@ export default function WalletSection({
       border="1px solid rgba(255, 255, 255, 0.1)"
       borderRadius="20px"
       p={6}
+      py={20}
     >
       <VStack spacing={5}>
         {/* Connect Button */}
@@ -36,8 +37,7 @@ export default function WalletSection({
             >
               Or enter a wallet address manually
             </Text>
-            <HStack spacing={3} width="100%">
-              <Input
+            <Input
                 placeholder="0x... or ENS name"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
@@ -56,14 +56,18 @@ export default function WalletSection({
                 }}
                 fontFamily="monospace"
                 fontSize="sm"
+                w={'70%'}
+                h={30}
+                textAlign={'center'}
               />
+
               <Button
                 onClick={onFetch}
                 background="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
                 border="none"
                 color="white"
                 fontWeight="600"
-                px={8}
+                px={10}
                 _hover={{
                   background: 'linear-gradient(135deg, #764ba2 0%, #f093fb 100%)',
                   transform: 'translateY(-2px)',
@@ -74,10 +78,10 @@ export default function WalletSection({
                 }}
                 isDisabled={!address}
                 opacity={!address ? 0.5 : 1}
+                mt={20}
               >
                 Fetch NFTs
               </Button>
-            </HStack>
           </VStack>
         )}
 
@@ -89,7 +93,7 @@ export default function WalletSection({
             border="none"
             color="white"
             fontWeight="600"
-            px={8}
+            px={10}
             width="100%"
             maxW="300px"
             _hover={{
@@ -100,6 +104,7 @@ export default function WalletSection({
             _active={{
               transform: 'translateY(0)',
             }}
+            mt={20}
           >
             Fetch My NFTs
           </Button>
