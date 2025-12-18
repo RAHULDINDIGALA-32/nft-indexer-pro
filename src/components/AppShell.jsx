@@ -6,7 +6,6 @@ export default function AppShell({ children }) {
       className="app-shell"
       minHeight="100vh"
       position="relative"
-      zIndex={1}
     >
       {children}
     </Box>
