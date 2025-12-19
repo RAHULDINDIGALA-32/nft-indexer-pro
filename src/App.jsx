@@ -4,6 +4,7 @@ import WalletSection from './components/Wallet';
 import NFTGrid from './components/NFTGrid';
 import NFTModal from './components/NFTModal';
 import { useNFTs } from './hooks/useNFT';
+import resolveENS from './utils/resolveENS';
 import { useAccount } from 'wagmi';
 import { useState, useEffect } from 'react';
 import { Center, Spinner, Alert, VStack, Text } from '@chakra-ui/react';
@@ -14,7 +15,7 @@ export default function App() {
   const [selectedNFT, setSelectedNFT] = useState(null);
   const { nfts, loading, error, fetchNFTs } = useNFTs();
 
-  const owner = isConnected ? address : manualAddress;
+  const owner = isConnected ? address : resolveENS(manualAddress);
 
   useEffect(() => {
     if (isConnected && address) fetchNFTs(address);

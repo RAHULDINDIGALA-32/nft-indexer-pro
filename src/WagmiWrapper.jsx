@@ -49,4 +49,4 @@ const WagmiWrapper = ({children}) => {
   );
 };
 
-export default WagmiWrapper;
+export  {config, WagmiWrapper};
