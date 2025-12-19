@@ -11,7 +11,7 @@ export default function Header() {
           mb={2}
           className="gradient-text"
         >
-          NFT Indexer
+          NFT Indexer Pro
         </Heading>
         <Box
           position="absolute"

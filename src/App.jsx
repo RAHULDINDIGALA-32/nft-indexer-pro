@@ -3,6 +3,7 @@ import Header from './components/Header';
 import WalletSection from './components/Wallet';
 import NFTGrid from './components/NFTGrid';
 import NFTModal from './components/NFTModal';
+import Footer from './components/Footer';
 import { useNFTs } from './hooks/useNFT';
 import { useResolveENS } from './hooks/useResolveENS';
 import { useAccount } from 'wagmi';
@@ -101,6 +102,8 @@ export default function App() {
         isOpen={!!selectedNFT} 
         onClose={handleCloseModal} 
       />
+
+      <Footer />
     </AppShell>
   );
 }
