@@ -15,7 +15,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  /* Web3 Industrial Color Palette */
+ 
   --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
   --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
   --gradient-accent: linear-gradient(135deg, #43e97b 0%, #38f9d7 50%, #667eea 100%);
@@ -53,6 +53,7 @@ body {
   background-attachment: fixed;
   position: relative;
   overflow-x: hidden;
+  background-color: transparent !important;
 }
 
 body::before {
