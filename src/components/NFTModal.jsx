@@ -175,15 +175,15 @@ export default function NFTModal({
                 {/* TOGGLE BUTTON */}
                 <Button
                   position="absolute"
-                  bottom={-12}
-                  right={4}
+                  bottom={2}
+                  right={2}
                   size="sm"
                   textTransform="uppercase"
                   letterSpacing="wider"
                   bg="blackAlpha.500"
                   color="whiteAlpha.800"
                   borderRadius="full"
-                  px={4}
+                  px={2}
                   _hover={{ bg: 'blackAlpha.700' }}
                   onClick={(e) => {
                     e.stopPropagation();

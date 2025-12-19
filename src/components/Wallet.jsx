@@ -1,10 +1,12 @@
 import { VStack, Input, Button, Box, HStack, Text } from '@chakra-ui/react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount } from 'wagmi';
+import ChainSelector from './chainSelector';
 
 export default function WalletSection({
   address,
   setAddress,
+  setChainId,
   onFetch,
 }) {
   const { isConnected } = useAccount();
@@ -61,6 +63,13 @@ export default function WalletSection({
                 textAlign={'center'}
               />
 
+            <HStack width="100%" justifyContent="center" spacing={35}>
+              <div>
+                  <ChainSelector 
+                onChange={setChainId} />
+              </div>
+              
+                
               <Button
                 onClick={onFetch}
                 background="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
@@ -79,9 +88,11 @@ export default function WalletSection({
                 isDisabled={!address}
                 opacity={!address ? 0.5 : 1}
                 mt={20}
+               
               >
                 Fetch NFTs
               </Button>
+            </HStack>
           </VStack>
         )}
 
@@ -104,7 +115,7 @@ export default function WalletSection({
             _active={{
               transform: 'translateY(0)',
             }}
-            mt={20}
+            mt={18}
           >
             Fetch My NFTs
           </Button>

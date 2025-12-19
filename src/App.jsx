@@ -4,23 +4,39 @@ import WalletSection from './components/Wallet';
 import NFTGrid from './components/NFTGrid';
 import NFTModal from './components/NFTModal';
 import { useNFTs } from './hooks/useNFT';
-import resolveENS from './utils/resolveENS';
+import { useResolveENS } from './hooks/useResolveENS';
 import { useAccount } from 'wagmi';
 import { useState, useEffect } from 'react';
 import { Center, Spinner, Alert, VStack, Text } from '@chakra-ui/react';
 
 export default function App() {
-  const { address, isConnected } = useAccount();
+  const { address, isConnected, chainId  } = useAccount();
   const [manualAddress, setManualAddress] = useState('');
   const [selectedNFT, setSelectedNFT] = useState(null);
   const { nfts, loading, error, fetchNFTs } = useNFTs();
+  const { address: ensAddress, loading: ensLoading, error: ensError, resolveENS } = useResolveENS();
+  const [selectedchainId, setSelectedChainId] = useState(1);
 
-  const owner = isConnected ? address : resolveENS(manualAddress);
+  const networkChainId = isConnected ? chainId : selectedchainId;
 
   useEffect(() => {
-    if (isConnected && address) fetchNFTs(address);
+    if (isConnected && address) fetchNFTs(address, networkChainId);
   }, [isConnected]);
 
+   const handleFetchNFTs = async () => {
+     let ownerAddress;
+
+     if(isConnected && address) {
+      ownerAddress = address;
+     } else {
+      resolveENS(manualAddress);
+      ownerAddress = ensAddress;
+     }
+
+     if(!ownerAddress) return;
+
+     fetchNFTs(ownerAddress, networkChainId);
+   }
   const handleSelectNFT = (nft) => {
     setSelectedNFT(nft);
   };
@@ -36,10 +52,11 @@ export default function App() {
       <WalletSection
         address={manualAddress}
         setAddress={setManualAddress}
-        onFetch={() => owner && fetchNFTs(owner)}
+        setChainId={setSelectedChainId}
+        onFetch={handleFetchNFTs}
       />
 
-      {loading && (
+      {(loading || ensLoading) && (
         <Center py={20}>
           <VStack spacing={4}>
             <Spinner 
@@ -65,7 +82,7 @@ export default function App() {
         </Center>
       )}
 
-      {error && (
+      {(error || ensError) && (
         <Alert 
           status="error"
           borderRadius="12px"
@@ -73,7 +90,7 @@ export default function App() {
           border="1px solid rgba(239, 68, 68, 0.3)"
           color="red.300"
         >
-          {error}
+          {ensError ? ensError : error}
         </Alert>
       )}
 
